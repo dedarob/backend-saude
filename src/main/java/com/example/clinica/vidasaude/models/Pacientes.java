@@ -15,6 +15,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 public class Pacientes {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @OneToOne(fetch = FetchType.EAGER)
