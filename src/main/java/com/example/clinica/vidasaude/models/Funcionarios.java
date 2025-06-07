@@ -20,4 +20,6 @@ public class Funcionarios {
     private Pessoas pessoa;
 
     private String cargo;
+    private String username;
+    private String senha;
 }
