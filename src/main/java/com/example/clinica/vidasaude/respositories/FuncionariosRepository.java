@@ -7,4 +7,5 @@ import java.util.Optional;
 
 public interface FuncionariosRepository extends JpaRepository<Funcionarios, Integer> {
     Optional findByUsername(String username);
+    boolean existsByUsername(String username);
 }
