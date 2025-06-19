@@ -10,7 +10,7 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface ConsultasMapper {
     @Mapping(source = "atendimento.paciente.pessoa.nome", target = "nomePaciente")
-    @Mapping(source = "medico.pessoa.nome", target = "nomeMedico")
+    @Mapping(source = "medico.funcionario.pessoa.nome", target = "nomeMedico")
     ConsultasDTO toDTO(Consultas consultas);
 
     List<ConsultasDTO> toDTO(List<Consultas> consultas);

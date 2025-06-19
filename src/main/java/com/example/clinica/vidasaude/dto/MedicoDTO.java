@@ -10,6 +10,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class MedicoDTO {
-    private Integer idPessoa;
+    private Integer idFuncionario;
     private String ramo;
 }

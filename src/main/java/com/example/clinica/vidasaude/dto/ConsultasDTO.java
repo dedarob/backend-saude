@@ -10,7 +10,9 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ConsultasDTO {
+    private Integer id;
     private String data;
+    private String hora;
     private String nomePaciente;
     private String nomeMedico;
     private String status;

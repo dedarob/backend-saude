@@ -22,9 +22,14 @@ public class FuncionariosController{
 public ResponseEntity<?> listSimples(@RequestParam(value = "returnTypes", required = false) String returnTypes){
     if ("idAndNome".equals(returnTypes)){
         return ResponseEntity.ok().body(simpleConsultingMapper.toFuncionarioDTO(funcionariosRepository.findAll()));
-    } else {
+    }
+    //if ("medicoSimples".equals(returnTypes)){
+      //  return ResponseEntity.ok().body(simpleConsultingMapper.toFuncionarioDTO(medicos.findAll()));
+    //}
+    else {
         return ResponseEntity.ok().body(funcionariosRepository.findAll());
     }
 }}
+
 
 

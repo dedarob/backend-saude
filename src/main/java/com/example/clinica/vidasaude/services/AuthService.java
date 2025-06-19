@@ -55,13 +55,13 @@ public class AuthService {
     }
 
     public Medicos salvarMedicoRamo(MedicoDTO dto){
-        if(!pessoasRepo.existsById(dto.getIdPessoa())){
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Pessoa não encontrada");
+        if(!funRepo.existsById(dto.getIdFuncionario())){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Funcionário não encontrado");
         }
-        Pessoas pessoa = pessoasRepo.findById(dto.getIdPessoa()).get();
+        Funcionarios funcionario = funRepo.findById(dto.getIdFuncionario()).get();
         Medicos medico = new Medicos();
-        medico.setPessoa(pessoa);
-        medico.setCargo(dto.getRamo());
+        medico.setFuncionario(funcionario);
+        medico.setEspecialidade(dto.getRamo());
         medRepo.save(medico);
         return medico;
     }

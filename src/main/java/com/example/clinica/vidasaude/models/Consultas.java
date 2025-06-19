@@ -23,4 +23,5 @@ public class Consultas {
 
     private String data;
     private String status;
+    private String hora;
 }

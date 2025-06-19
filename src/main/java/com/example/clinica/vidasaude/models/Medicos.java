@@ -15,7 +15,7 @@ public class Medicos {
     private Integer id;
 
     @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "pessoa_id")
-    private Pessoas pessoa;
-    private String cargo;
+    @JoinColumn(name = "id_funcionario")
+    private Funcionarios funcionario;
+    private String especialidade;
 }

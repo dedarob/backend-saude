@@ -21,4 +21,14 @@ public class MedicamentosController {
         return ResponseEntity.ok().body(medicamentosService.puxarTodosMedicamentos());
     }
 
+    @PostMapping
+    public ResponseEntity<Medicamentos> inserirMedicamentos(@RequestBody Medicamentos medicamento){
+        return ResponseEntity.ok().body(medicamentosService.inserirMedicamento(medicamentosService.inserirMedicamento(medicamento)));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Medicamentos> modMed(@PathVariable Integer id, @RequestBody Medicamentos medicamento){
+        return ResponseEntity.ok().body(medicamentosService.modificarMedicamento(id, medicamento));
+    }
+
 }
