@@ -28,4 +28,8 @@ public class ConsultasController {
 
         return ResponseEntity.ok().body(consultasService.registrarConsultas(dto));
     }
+    @PutMapping("/{id}")
+    public ResponseEntity<Consultas> altConsultas(@PathVariable Integer id, @RequestBody RegistrarConsultasDTO dto){
+        return ResponseEntity.ok().body(consultasService.alterarConsultas(id, dto));
+    }
 }
