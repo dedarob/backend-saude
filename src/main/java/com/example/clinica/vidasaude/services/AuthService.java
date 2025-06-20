@@ -3,6 +3,8 @@ package com.example.clinica.vidasaude.services;
 import com.example.clinica.vidasaude.dto.AuthDTO;
 import com.example.clinica.vidasaude.dto.FuncionarioRegistroDTO;
 import com.example.clinica.vidasaude.dto.MedicoDTO;
+import com.example.clinica.vidasaude.dto.MedicoSimplesDTO;
+import com.example.clinica.vidasaude.mappers.SimpleConsultingMapper;
 import com.example.clinica.vidasaude.models.Funcionarios;
 import com.example.clinica.vidasaude.models.Medicos;
 import com.example.clinica.vidasaude.models.Pessoas;
@@ -14,6 +16,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,6 +28,8 @@ public class AuthService {
     private PessoasRepository pessoasRepo;
     @Autowired
     private MedicosRepository medRepo;
+    @Autowired
+    private SimpleConsultingMapper simpleMapper;
     public Integer acharUsuarioEAutenticar(AuthDTO dto){
         Optional<Funcionarios> funcionarios = funRepo.findByUsername(dto.getUsername());
         System.out.println("aquibeto" + dto.getUsername());
@@ -59,10 +64,19 @@ public class AuthService {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Funcionário não encontrado");
         }
         Funcionarios funcionario = funRepo.findById(dto.getIdFuncionario()).get();
+        if(!funcionario.getCargo().equalsIgnoreCase("medico")){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Funcionario não é um médico");
+        }
+        //Pessoas pessoa = pessoasRepo.findById(funcionario.getPessoa().getId()).get();
         Medicos medico = new Medicos();
         medico.setFuncionario(funcionario);
         medico.setEspecialidade(dto.getRamo());
         medRepo.save(medico);
         return medico;
+    }
+
+    public List<MedicoSimplesDTO> retornarMedicoSimples(){
+        List<Medicos> medicos = medRepo.findAll();
+        return simpleMapper.toMedicoSimplesDTO(medicos);
     }
 }

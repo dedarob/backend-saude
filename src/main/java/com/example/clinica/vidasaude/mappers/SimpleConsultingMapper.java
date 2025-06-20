@@ -1,8 +1,10 @@
 package com.example.clinica.vidasaude.mappers;
 
 import com.example.clinica.vidasaude.dto.FuncionarioSimplesDTO;
+import com.example.clinica.vidasaude.dto.MedicoSimplesDTO;
 import com.example.clinica.vidasaude.dto.PacienteSimplesDTO;
 import com.example.clinica.vidasaude.models.Funcionarios;
+import com.example.clinica.vidasaude.models.Medicos;
 import com.example.clinica.vidasaude.models.Pacientes;
 import com.example.clinica.vidasaude.models.Pessoas;
 import org.mapstruct.Mapper;
@@ -20,4 +22,8 @@ public interface SimpleConsultingMapper {
     @Mapping(source = "pessoa.nome", target = "nomePaciente")
     PacienteSimplesDTO toPacienteDTO(Pacientes paciente);
     List<PacienteSimplesDTO> toPacienteDTO (List<Pacientes> pacientes);
+
+    @Mapping(source = "funcionario.pessoa.nome", target = "nome")
+    MedicoSimplesDTO toMedicoSimplesDTO(Medicos medico);
+    List<MedicoSimplesDTO> toMedicoSimplesDTO(List<Medicos> medicos);
 }

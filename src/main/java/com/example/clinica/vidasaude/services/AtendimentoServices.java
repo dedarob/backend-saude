@@ -1,5 +1,6 @@
 package com.example.clinica.vidasaude.services;
 
+import com.example.clinica.vidasaude.dto.AtendimentoSimplesDTO;
 import com.example.clinica.vidasaude.dto.AtendimentosDTO;
 import com.example.clinica.vidasaude.dto.AtendimentosRequestDTO;
 import com.example.clinica.vidasaude.mappers.AtendimentosMapper;
@@ -10,8 +11,10 @@ import com.example.clinica.vidasaude.respositories.AtendimentosRepository;
 import com.example.clinica.vidasaude.respositories.FuncionariosRepository;
 import com.example.clinica.vidasaude.respositories.PacientesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -45,5 +48,17 @@ public class AtendimentoServices{
         atendimento.setFuncionario(funcionario);
 
         return atendimentosRepository.save(atendimento);
+    }
+
+    public List<AtendimentoSimplesDTO> pegarSimplesAt(){
+        ArrayList<AtendimentoSimplesDTO> dtoList= new ArrayList();
+        List<Atendimentos> atendimentos = atendimentosRepository.findAll();
+        for(int i = 0; i<atendimentos.size(); i++){
+            AtendimentoSimplesDTO dto = new AtendimentoSimplesDTO();
+            dto.setId(atendimentos.get(i).getId());
+            dto.setDescricao(atendimentos.get(i).getDescricao());
+            dtoList.add(dto);
+        }
+        return dtoList;
     }
 }

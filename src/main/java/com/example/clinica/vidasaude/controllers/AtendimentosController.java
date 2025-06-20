@@ -1,5 +1,6 @@
 package com.example.clinica.vidasaude.controllers;
 
+import com.example.clinica.vidasaude.dto.AtendimentoSimplesDTO;
 import com.example.clinica.vidasaude.dto.AtendimentosDTO;
 import com.example.clinica.vidasaude.dto.AtendimentosRequestDTO;
 import com.example.clinica.vidasaude.models.Atendimentos;
@@ -25,6 +26,12 @@ public class AtendimentosController {
         return ResponseEntity.ok().body(atendimento);
     }
 
+    @GetMapping("/simples")
+        public ResponseEntity<List<AtendimentoSimplesDTO>> listarAtSimples() {
+        return ResponseEntity.ok().body(atendimentoServices.pegarSimplesAt());
+        }
+
+
     @PostMapping
     public ResponseEntity<Atendimentos> registrarAtendimento(@RequestBody AtendimentosRequestDTO dto){
         try{
@@ -35,5 +42,4 @@ public class AtendimentosController {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
-    }
-}
+    }}
